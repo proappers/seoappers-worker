@@ -29,6 +29,7 @@ __PACKAGE__->table("page_item");
 =head2 page_item_id
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
 =head2 page_item_key
@@ -65,7 +66,7 @@ __PACKAGE__->table("page_item");
 
 __PACKAGE__->add_columns(
   "page_item_id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "page_item_key",
   { data_type => "varchar", is_nullable => 1, size => 45 },
   "page_value",
@@ -118,8 +119,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-08-23 22:46:43
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Af3r82oRynRsv+PFDhntQA
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-08-23 23:37:49
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pQwzaCXF2MoIK6/g1GD6uQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -29,6 +29,7 @@ __PACKAGE__->table("crawl");
 =head2 crawl_id
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
 =head2 date_started
@@ -64,7 +65,7 @@ __PACKAGE__->table("crawl");
 
 __PACKAGE__->add_columns(
   "crawl_id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "date_started",
   {
     data_type => "datetime",
@@ -139,8 +140,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-08-23 22:46:43
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:WCZQn7CqWRquwDvENXOf6w
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-08-23 23:37:49
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:W7LjsGzKuIB+H7HchxFiDQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

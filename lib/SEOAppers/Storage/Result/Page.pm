@@ -29,6 +29,7 @@ __PACKAGE__->table("page");
 =head2 page_id
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
 =head2 seo_score
@@ -58,7 +59,7 @@ __PACKAGE__->table("page");
 
 __PACKAGE__->add_columns(
   "page_id",
-  { data_type => "integer", is_nullable => 0 },
+  { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "seo_score",
   { data_type => "integer", is_nullable => 1 },
   "path",
@@ -122,8 +123,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-08-23 22:46:43
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Yf1XFiUFwWeXNduKd39nMA
+# Created by DBIx::Class::Schema::Loader v0.07025 @ 2012-08-23 23:37:49
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vbLENUxoiwD/FtxfKXv2xg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
