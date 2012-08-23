@@ -1,0 +1,7 @@
+tmp/*
+index/*
+logs/*
+*.un~
+*.swp
+main/
+supervise/
