@@ -18,6 +18,8 @@ use Mojo::UserAgent;
 use Mojo::IOLoop;
 use Mojo::URL;
 
+use 5.10.0;
+
 use Moose;
 use MooseX::NonMoose;
 use MooseX::MarkAsMethods autoclean => 1;
@@ -149,6 +151,8 @@ sub execute {
     # Startzeit setzen
     $self->update( { date_started => \"UTC_TIMESTAMP()" } );
 
+        my $base = Mojo::URL->new( $self->website->url );
+
     # FIFO queue
     my $seen = {};
 
@@ -163,9 +167,9 @@ sub execute {
 
         if ( !exists $seen->{$url} ) {
 
-            $seen->{$url} = 1;
-
             my $tx = $ua->get($url);
+            
+            $seen->{$url} = $tx->res->dom;
 
             # Extract URLs
             print "Searching in $url\n";
@@ -192,15 +196,33 @@ sub execute {
                 }
             );
 
+
+
         }
     }
 
-    # Start event loop if necessary
-    #Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
+    foreach my $url ( keys %$seen ) {
 
-    use Data::Printer;
+        print " -> $url  \n";
+ 
+        my $dom = $seen->{$url};
 
-    p $seen;
+        my $page = $self->create_related('pages', { path => Mojo::URL->new($url)->to_rel($base) , seo_score => 42 });
+    
+        use Data::Printer;
+
+        my $title            = $dom->at('title')->text;
+        my $meta_description = $dom->at('meta[name=description]') ;
+        my $meta_keywords    = $dom->at('meta[name=keywords]');
+
+        $page->create_related('page_items', { page_item_key => "title", page_value => $title });
+        $page->create_related('page_items', { page_item_key => "meta.description", page_value => $meta_description ? $meta_description->attrs->{content} : "" });
+        $page->create_related('page_items', { page_item_key => "meta.keywords",    page_value => $meta_keywords    ? $meta_keywords->attrs->{content} : "" });
+        
+    
+    
+    }
+ 
 
     # Endzeit setzen
     $self->update( { date_finished => \"UTC_TIMESTAMP()" } );

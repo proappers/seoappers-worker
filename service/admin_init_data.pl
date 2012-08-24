@@ -15,8 +15,7 @@ my $schema = SEOAppers::Utils->schema;
 $schema->resultset('Website')->delete_all;
 
 my $website1 = $schema->resultset('Website')->create( { url => "http://www.mcei2020.de/", name => "mcei", seo_score => 0, created => \"UTC_TIMESTAMP()", max_sites => 100 });
-my $website2 = $schema->resultset('Website')->create( { url => "http://www.h-quadrat.com/", name => "H²", seo_score => 0, created => \"UTC_TIMESTAMP()", max_sites => 100 });
-my $website3 = $schema->resultset('Website')->create( { url => "http://www.kelsterbacher-strassenfest.de/", name => "H²", seo_score => 0, created => \"UTC_TIMESTAMP()", max_sites => 100 });
+my $website2 = $schema->resultset('Website')->create( { url => "http://www.schwarze-hand-hassloch.de/", name => "Hassloch", seo_score => 0, created => \"UTC_TIMESTAMP()", max_sites => 100 });
 
 
 
